@@ -1,51 +1,41 @@
-// Zamora, Kenny Ivan S.A.
+// Zamora, Kenny Ivan
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+public class test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        while (true) {
+        	System.out.print("Enter an odd number: ");
+        	try {
+        		int size = scanner.nextInt();
+        		if (size <= 0) {
+            		System.out.println("Please enter a positive number!");
+            		continue;
+            	}
+            	if (size % 2 == 0) {
+            		System.out.println("Please enter an odd number!");
+            		continue;
+            	}
+            	
+            	for (int i = 1; i <= size; i += 2) printRow(size, i); // 5 i= 1 3 5 --- upper
+            	for (int i = size - 2; i > 0; i -= 2) printRow(size, i); // 5 i = 3 1 --- lower
+            	scanner.close();
+            	break;
+        	} catch (InputMismatchException e) {
+        		System.out.println("Must be a number!");
+        		scanner.nextLine();
+        		continue;
+        	}
+        }
+    }
 
-public class test1 {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-//		System.out.println("Welcome");
-//		
-//		int a = 1;
-//		while (a <= 5) {
-//			System.out.println("Itter: "+a);
-//			a++;
-//		}
-//		
-//		int b = 1;
-//		do {
-//			System.out.println("Itter: " + b);
-//			b++;
-//		} while (b<=5);
-//		
-//	
-//		for(a=1;a<=5;a+=2) {
-//			System.out.println("letter: " + a);
-//		}
-//		
-//		Scanner scan = new Scanner(System.in);
-//		System.out.println("Enter your name: ");
-//		String name = scan.nextLine();
-//		System.out.println("Your name is: " + name);
-//		scan.close();
-//			
-		Scanner scan = new Scanner(System.in);
-		int[] odd;
-		int[] even;
-		
-		while (true) {
-			System.out.println("Enter your number: ");
-			
-			int num = scan.nextInt();		
-			System.out.println(num);
-			
-			if (num == -1) {
-				break;
-			}
-			
-		}
-		
-	}
+    private static void printRow(int size, int stars) { //1 3 5
+        for (int i = 0; i < (size - stars) / 2; i++) System.out.print(" "); // 5 - 1 = 4/2 = 2    5 - 3 = 2 / 2 = 1 5 - 5 = 0 
+        for (int i = 0; i < stars; i++) System.out.print("*");
+        System.out.println();
+    }
 }
+
